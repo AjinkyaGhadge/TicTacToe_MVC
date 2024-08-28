@@ -32,7 +32,7 @@ namespace TicTacToe_2
         /// </summary>
         private void InitializeComponent()
         {
-            gameController = new Controller.Controller();
+            gameController = new Controller.Controller(this);
             GameGrid = new TableLayoutPanel();
             button9 = new Button();
             button8 = new Button();
@@ -213,7 +213,6 @@ namespace TicTacToe_2
             StatusLabel.TabIndex = 0;
             StatusLabel.Text = "Click Play to Start";
             StatusLabel.TextAlign = ContentAlignment.MiddleCenter;
-            StatusLabel.Click += StatusLabel_Click;
             // 
             // PlayButton
             // 

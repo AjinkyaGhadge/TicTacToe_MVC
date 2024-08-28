@@ -1,12 +1,12 @@
+using Controller;
+using System.Diagnostics;
 namespace TicTacToe_2
 {
-    public partial class View : Form
+    public partial class View : Form, IView
     {
         public View()
         {
             InitializeComponent();
-            Toggle_All_Button(true);
-
         }
 
         private void PlayButton_Click(object sender, EventArgs e)
@@ -18,32 +18,34 @@ namespace TicTacToe_2
             }
             else
             {
-
-                //gameModel.player1_name = Player1NameBox.Text;
-                //gameModel.player2_name = Player2NameBox.Text;
+                Player1NameBox.Enabled = false;
+                Player2NameBox.Enabled = false;
             }
+            ResetGrid();
+            ToggleGrid(true);
+            gameController.onPlayButton(Player1NameBox.Text, Player2NameBox.Text);
+            PlayButton.Enabled = false;
+        }
 
-            Button currButton = (Button)sender;
-            if (currButton.Text == "PLAY" && StatusLabel.Text == "Game Over")
+        public void enablePlayButton (bool state)
+        {
+            PlayButton.Enabled = state;
+            if (Player1NameBox.Enabled is not true)
             {
-                InitializeGame();
+                Player1NameBox.Enabled = true;
             }
-            else
-            {
-                Toggle_All_Button(true);
-                //StatusLabel.Text = $"Current Turn: {gameModel.player1_name}";
+            if (Player2NameBox.Enabled is not true) 
+            { 
+                Player2NameBox.Enabled= true;
             }
         }
+        
         private void button_MouseEnter(object sender, EventArgs e)
         {
             Button currButton = (Button)sender;
             string buttonName = currButton.Name;
             int button_in_int = int.Parse(buttonName);
-            Tuple<bool, string> response = gameController.onMouseEnter(button_in_int, currButton.Text);
-            if (response.Item1)
-            {
-                currButton.Text = response.Item2;
-            }
+            gameController.onMouseEnter(button_in_int, currButton.Text);
         }
 
         private void button_MouseLeave(object sender, EventArgs e)
@@ -51,72 +53,88 @@ namespace TicTacToe_2
             Button currButton = (Button)sender;
             string buttonName = currButton.Name;
             int button_in_int = int.Parse(buttonName);
-            Tuple<bool, string> response = gameController.onMouseExit(button_in_int, currButton.Text);
-            if (response.Item1)
-            {
-                currButton.Text = response.Item2;
-            }
+            gameController.onMouseExit(button_in_int, currButton.Text);
         }
 
         private void button_Click(object sender, EventArgs e)
         {
-            if (getGameModelLocationCurrentData(sender, e) != -1)
-            {
-                return;
-            }
+            Button b = (Button)sender;
+            int button = int.Parse(b.Name);
+            gameController.onButtonClick(button);
+        }
 
-            else
-            {
-                Button currButton = (Button)sender;
+        public void InitializeGame()
+        {
+            ResetGrid();
+            SetPlayer1Name("");
+            SetPlayer2Name("");
+            SetStatusLabelText("Click Play to Start");
+            ToggleGrid(false);
+        }
 
-                int button_in_int = int.Parse(currButton.Name);
-                //if (gameModel.currentPlayerID == 1)
-                //{
-                //    currButton.Text = "X";
-                //    StatusLabel.Text = $"Current Turn: {gameModel.player2_name}";
-                //}
-                //else
-                //{
-                //    currButton.Text = "O";
-                //    StatusLabel.Text = $"Current Turn: {gameModel.player1_name}";
-                //}
-                //gameModel.OnGridEvent(button_in_int);
-                //var result = gameModel.CheckGameStatus();
-                //if (result == -1 || result == 1 || result == 0)
-                //{
-                //    Toggle_All_Button(false);
-                //    StatusLabel.Text = "Game Over";
-                //    Player1NameBox.Text = "";
-                //    Player2NameBox.Text = "";
-                //}
+        public void SetPlayButtonText(string text)
+        {
+            PlayButton.Text = text;
+        }
+
+        public void SetStatusLabelText(string text)
+        {
+            StatusLabel.Text = text;
+        }
+
+        public void SetPlayer1Name(string text)
+        {
+            Player1NameBox.Text = text;
+        }
+
+        public void SetPlayer2Name(string text)
+        {
+            Player2NameBox.Text = text;
+        }
+
+        public void UpdateGridButton(string button,string text)
+        {
+            switch (button)
+            {
+                case "1": button1.Text = text;
+                    break;
+                case "2": button2.Text = text;
+                    break;
+                case "3": button3.Text = text;
+                    break;
+                case "4": button4.Text = text;
+                    break;
+                case "5": button5.Text = text;
+                    break;
+                case "6": button6.Text = text;
+                    break;
+                case "7": button7.Text = text;
+                    break;
+                case "8": button8.Text = text;
+                    break;
+                case "9": button9.Text = text;
+                    break;
+                default: Trace.TraceError("No button of type " + button + "in grid");
+                    throw new ArgumentException("Button of type "+button+" is not present in grid");
             }
         }
 
-        private int getGameModelLocationCurrentData(object sender, EventArgs e)
+        public void ResetGrid()
         {
-            Button currButton = (Button)sender;
-            string buttonName = currButton.Name;
-            int button_in_int = int.Parse(buttonName);
-            //Tuple<int, int> corrdinates = getCoordinate(button_in_int);
-            //return gameModel.grid[corrdinates.Item1][corrdinates.Item2
-            return 1;
+            button1.Text = string.Empty;
+            button2.Text = string.Empty;
+            button3.Text = string.Empty;
+            button4.Text = string.Empty;
+            button5.Text = string.Empty;
+            button6.Text = string.Empty;
+            button7.Text = string.Empty;
+            button8.Text = string.Empty;
+            button9.Text = string.Empty;
         }
 
-        private void Toggle_All_Button(bool toggle)
+        public void ToggleGrid(bool toggle)
         {
-            if (toggle is false)
-            {
-                button1.Enabled = false;
-                button2.Enabled = false;
-                button3.Enabled = false;
-                button4.Enabled = false;
-                button5.Enabled = false;
-                button6.Enabled = false;
-                button7.Enabled = false;
-                button8.Enabled = false;
-                button9.Enabled = false;
-            }
-            else
+            if(toggle)
             {
                 button1.Enabled = true;
                 button2.Enabled = true;
@@ -128,64 +146,19 @@ namespace TicTacToe_2
                 button8.Enabled = true;
                 button9.Enabled = true;
             }
-        }
+            else
+            {
+                button1.Enabled = false;
+                button2.Enabled = false;
+                button3.Enabled = false;
+                button4.Enabled = false;
+                button5.Enabled = false;
+                button6.Enabled = false;
+                button7.Enabled = false;
+                button8.Enabled = false;
+                button9.Enabled = false;
+            }
 
-        private void StatusLabel_Click(object sender, EventArgs e)
-        {
-
-        }
-
-        private void InitializeGame()
-        {
-            ResetGameButton();
-            ResetPlayer1NameBox();
-            ResetPlayer2NameBox();
-            ResetGameLabel();
-            Toggle_All_Button(true);
-        }
-
-        private void ResetGameButton()
-        {
-            //button1.Text = String.Empty;
-            //gameModel.grid[0][0] = -1;
-            //button2.Text = String.Empty;
-            //gameModel.grid[0][1] = -1;
-            //button3.Text = String.Empty;
-            //gameModel.grid[0][2] = -1;
-            //button4.Text = String.Empty;
-            //gameModel.grid[1][0] = -1;
-            //button5.Text = String.Empty;
-            //gameModel.grid[1][1] = -1;
-            //button6.Text = String.Empty;
-            //gameModel.grid[1][2] = -1;
-            //button7.Text = String.Empty;
-            //gameModel.grid[2][0] = -1;
-            //button8.Text = String.Empty;
-            //gameModel.grid[2][1] = -1;
-            //button9.Text = String.Empty;
-            //gameModel.grid[2][2] = -1;
-        }
-
-
-
-        private void ResetPlayButton()
-        {
-            PlayButton.Text = "PLay";
-        }
-
-        private void ResetPlayer1NameBox()
-        {
-            Player1NameBox.Text = String.Empty;
-        }
-
-        private void ResetPlayer2NameBox()
-        {
-            Player2NameBox.Text = String.Empty;
-        }
-
-        private void ResetGameLabel()
-        {
-            StatusLabel.Text = "Click Play to Start";
         }
     }
 }
