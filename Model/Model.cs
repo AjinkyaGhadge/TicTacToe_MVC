@@ -4,7 +4,7 @@ namespace Model
 {
     public class Model
     {
-        #region private members
+        #region Private Members
         public string player1_name { get; set; } = string.Empty;
         public string player2_name { get; set; } = string.Empty;
         public int player1_id { get; private set; }
@@ -33,7 +33,7 @@ namespace Model
             player2_id = 0;
             grid = new List<List<int>>();
 
-            // Fill the grid with default values (e.g., 0)
+            // Fill the grid with default values (e.g., -1)
             for (int i = 0; i < 3; i++)
             {
                 // Create a new list for each row
@@ -56,32 +56,35 @@ namespace Model
         }
         #endregion
 
-        public void setGridValue(int xCoordinate, int yCoordinate, int value)
+        #region Public Methods
+
+        public void SetGridValue(int xCoordinate, int yCoordinate, int value)
         {
             try
             {
                 this.grid[xCoordinate][yCoordinate] = value;
             }
-            catch(Exception  e) 
-            { 
-                Trace.WriteLine("Error updating value "+value+" for "+xCoordinate+", "+yCoordinate + ".Due to Exception " + e);
+            catch (Exception e)
+            {
+                Trace.WriteLine("Error updating value " + value + " for " + xCoordinate + ", " + yCoordinate + ". Due to Exception " + e);
             }
         }
 
-        public int getGridValue(int xCoordinate, int yCoordinates)
+        public int GetGridValue(int xCoordinate, int yCoordinates)
         {
             try
             {
                 int value = grid[xCoordinate][yCoordinates];
                 return value;
             }
-            catch (Exception E)
+            catch (Exception e)
             {
-                Trace.WriteLine("Error occured: " + E);
+                Trace.WriteLine("Error occurred: " + e);
                 return -2;
             }
         }
-        public void setPlayer(int playerID)
+
+        public void SetPlayer(int playerID)
         {
             try
             {
@@ -92,15 +95,17 @@ namespace Model
                 Trace.WriteLine("Error updating value due to exception: " + e);
             }
         }
-        public List<int> getGridRow(int xCoordinate)
+
+        public List<int> GetGridRow(int xCoordinate)
         {
             return grid[xCoordinate];
         }
 
-        public Tuple<int,int> getGridDimmensions()
+        public Tuple<int, int> GetGridDimensions()
         {
-            return new Tuple<int,int>(grid.Count, grid[0].Count);
+            return new Tuple<int, int>(grid.Count, grid[0].Count);
         }
-    }
 
+        #endregion
+    }
 }

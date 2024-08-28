@@ -89,9 +89,9 @@ namespace TicTacToe_2
             button9.Size = new Size(127, 127);
             button9.TabIndex = 8;
             button9.UseVisualStyleBackColor = true;
-            button9.Click += button_Click;
-            button9.MouseEnter += button_MouseEnter;
-            button9.MouseLeave += button_MouseLeave;
+            button9.Click += GridButton_Click;
+            button9.MouseEnter += GridButton_MouseEnter;
+            button9.MouseLeave += GridButton_MouseLeave;
             // 
             // button8
             // 
@@ -101,9 +101,9 @@ namespace TicTacToe_2
             button8.Size = new Size(127, 127);
             button8.TabIndex = 7;
             button8.UseVisualStyleBackColor = true;
-            button8.Click += button_Click;
-            button8.MouseEnter += button_MouseEnter;
-            button8.MouseLeave += button_MouseLeave;
+            button8.Click += GridButton_Click;
+            button8.MouseEnter += GridButton_MouseEnter;
+            button8.MouseLeave += GridButton_MouseLeave;
             // 
             // button7
             // 
@@ -113,9 +113,9 @@ namespace TicTacToe_2
             button7.Size = new Size(127, 127);
             button7.TabIndex = 6;
             button7.UseVisualStyleBackColor = true;
-            button7.Click += button_Click;
-            button7.MouseEnter += button_MouseEnter;
-            button7.MouseLeave += button_MouseLeave;
+            button7.Click += GridButton_Click;
+            button7.MouseEnter += GridButton_MouseEnter;
+            button7.MouseLeave += GridButton_MouseLeave;
             // 
             // button6
             // 
@@ -125,9 +125,9 @@ namespace TicTacToe_2
             button6.Size = new Size(127, 127);
             button6.TabIndex = 5;
             button6.UseVisualStyleBackColor = true;
-            button6.Click += button_Click;
-            button6.MouseEnter += button_MouseEnter;
-            button6.MouseLeave += button_MouseLeave;
+            button6.Click += GridButton_Click;
+            button6.MouseEnter += GridButton_MouseEnter;
+            button6.MouseLeave += GridButton_MouseLeave;
             // 
             // button5
             // 
@@ -137,9 +137,9 @@ namespace TicTacToe_2
             button5.Size = new Size(127, 127);
             button5.TabIndex = 4;
             button5.UseVisualStyleBackColor = true;
-            button5.Click += button_Click;
-            button5.MouseEnter += button_MouseEnter;
-            button5.MouseLeave += button_MouseLeave;
+            button5.Click += GridButton_Click;
+            button5.MouseEnter += GridButton_MouseEnter;
+            button5.MouseLeave += GridButton_MouseLeave;   
             // 
             // button4
             // 
@@ -149,9 +149,9 @@ namespace TicTacToe_2
             button4.Size = new Size(127, 127);
             button4.TabIndex = 3;
             button4.UseVisualStyleBackColor = true;
-            button4.Click += button_Click;
-            button4.MouseEnter += button_MouseEnter;
-            button4.MouseLeave += button_MouseLeave;
+            button4.Click += GridButton_Click;
+            button4.MouseEnter += GridButton_MouseEnter;
+            button4.MouseLeave += GridButton_MouseLeave;
             // 
             // button3
             // 
@@ -161,9 +161,9 @@ namespace TicTacToe_2
             button3.Size = new Size(127, 127);
             button3.TabIndex = 2;
             button3.UseVisualStyleBackColor = true;
-            button3.Click += button_Click;
-            button3.MouseEnter += button_MouseEnter;
-            button3.MouseLeave += button_MouseLeave;
+            button3.Click += GridButton_Click;
+            button3.MouseEnter += GridButton_MouseEnter;
+            button3.MouseLeave += GridButton_MouseLeave;
             // 
             // button2
             // 
@@ -173,9 +173,9 @@ namespace TicTacToe_2
             button2.Size = new Size(127, 127);
             button2.TabIndex = 1;
             button2.UseVisualStyleBackColor = true;
-            button2.Click += button_Click;
-            button2.MouseEnter += button_MouseEnter;
-            button2.MouseLeave += button_MouseLeave;
+            button2.Click += GridButton_Click;
+            button2.MouseEnter += GridButton_MouseEnter;
+            button2.MouseLeave += GridButton_MouseLeave;
             // 
             // button1
             // 
@@ -185,9 +185,9 @@ namespace TicTacToe_2
             button1.Size = new Size(127, 127);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = true;
-            button1.Click += button_Click;
-            button1.MouseEnter += button_MouseEnter;
-            button1.MouseLeave += button_MouseLeave;
+            button1.Click += GridButton_Click;
+            button1.MouseEnter += GridButton_MouseEnter;
+            button1.MouseLeave += GridButton_MouseLeave;
             // 
             // ActionButtonGrid
             // 
