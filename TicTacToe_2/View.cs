@@ -16,12 +16,6 @@ namespace TicTacToe_2
                 MessageBox.Show("Enter player names before starting");
                 return;
             }
-            else
-            {
-
-                //gameModel.player1_name = Player1NameBox.Text;
-                //gameModel.player2_name = Player2NameBox.Text;
-            }
 
             Button currButton = (Button)sender;
             if (currButton.Text == "PLAY" && StatusLabel.Text == "Game Over")
@@ -70,25 +64,19 @@ namespace TicTacToe_2
                 Button currButton = (Button)sender;
 
                 int button_in_int = int.Parse(currButton.Name);
-                //if (gameModel.currentPlayerID == 1)
-                //{
-                //    currButton.Text = "X";
-                //    StatusLabel.Text = $"Current Turn: {gameModel.player2_name}";
-                //}
-                //else
-                //{
-                //    currButton.Text = "O";
-                //    StatusLabel.Text = $"Current Turn: {gameModel.player1_name}";
-                //}
-                //gameModel.OnGridEvent(button_in_int);
-                //var result = gameModel.CheckGameStatus();
-                //if (result == -1 || result == 1 || result == 0)
-                //{
-                //    Toggle_All_Button(false);
-                //    StatusLabel.Text = "Game Over";
-                //    Player1NameBox.Text = "";
-                //    Player2NameBox.Text = "";
-                //}
+                Tuple<string, string, int> response = gameController.OnButtonClick(button_in_int);
+
+                currButton.Text = response.Item1;
+                StatusLabel.Text = response.Item2;
+                var result = response.Item3;
+                if (result == -1 || result == 1 || result == 0)
+                {
+                  
+                    Toggle_All_Button(false);
+                   StatusLabel.Text = "Game Over";
+                    Player1NameBox.Text = "";
+                    Player2NameBox.Text = "";
+                }
             }
         }
 

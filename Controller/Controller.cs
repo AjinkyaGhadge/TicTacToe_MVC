@@ -149,6 +149,25 @@ namespace Controller
             return gameModel.getGridValue(corrdinates.Item1, corrdinates.Item2);
         }
 
+        public Tuple<string, string,int> OnButtonClick(int button)
+        {
+            // Assuming currButton and StatusLabel are defined elsewhere or passed in
+            string buttonText;
+            string statusText;
+
+            if (gameModel.currentPlayerID == 1)
+            {
+                buttonText = "X";
+                statusText = $"Current Turn: {gameModel.player2_name}";
+            }
+            else
+            {
+                buttonText = "O";
+                statusText = $"Current Turn: {gameModel.player1_name}";
+            }
+            // Return the updated values
+            return new Tuple<string, string,int>(buttonText, statusText, CheckGameStatus());
+        }
 
         #endregion
 
