@@ -4,9 +4,10 @@ using System.Windows.Forms;
 
 namespace TicTacToe_2
 {
-    public partial class View : Form, IView
+    public partial class GameView : Form, IView
     {
-        public View()
+        View.ThemeManager themeManager = new View.ThemeManager();
+        public GameView()
         {
             InitializeComponent();
         }
@@ -129,6 +130,30 @@ namespace TicTacToe_2
             button7.Enabled = toggle;
             button8.Enabled = toggle;
             button9.Enabled = toggle;
+        }
+
+        private void ChangeThemeButton_Click(object sender, EventArgs e)
+        {
+            SwitchTheme(sender, e);
+        }
+
+        private void SwitchTheme(object sender, EventArgs e)
+        {
+            themeManager.SwitchToNextTheme();
+            ApplyTheme();
+        }
+
+        private void ApplyTheme()
+        {
+            var currentTheme = themeManager.GetCurrentTheme();
+            this.BackColor = currentTheme.BackgroundColor;
+            this.ForeColor = currentTheme.ForegroundColor;
+            foreach (Control control in this.Controls)
+            {
+                control.BackColor = currentTheme.BackgroundColor;
+                control.ForeColor = currentTheme.ForegroundColor;
+            }
+            this.Text = $"Theme Switcher - {currentTheme.Name} Theme";
         }
     }
 }
