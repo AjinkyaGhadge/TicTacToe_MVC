@@ -1,8 +1,7 @@
 ﻿using System.Diagnostics;
-
 namespace Model
 {
-    public class Model
+    public class Model : IGridSubject
     {
         #region Private Members
         public string player1_name { get; set; } = string.Empty;
@@ -14,6 +13,8 @@ namespace Model
         public List<List<int>> grid { get; private set; }
 
         TraceListener fileListener;
+
+        private List<IGridObserver> observers = new List<IGridObserver>();
         #endregion
 
         public enum GameResult
@@ -63,6 +64,7 @@ namespace Model
             try
             {
                 this.grid[xCoordinate][yCoordinate] = value;
+                this.Notify();
             }
             catch (Exception e)
             {
@@ -104,6 +106,29 @@ namespace Model
         public Tuple<int, int> GetGridDimensions()
         {
             return new Tuple<int, int>(grid.Count, grid[0].Count);
+        }
+        public void Notify()
+        {
+            foreach (var observer in observers)
+            {
+                for (int i = 0; i < 3; i++)
+                {
+                    for (int j = 0; j < 3; j++)
+                    {
+                        observer.Update(i, j, grid[i][j]);
+                    }
+                }
+            }
+        }
+
+        public void Attach(IGridObserver observer)
+        {
+            observers.Add(observer);
+        }
+
+        public void Detach(IGridObserver observer)
+        {
+            observers.Remove(observer);
         }
 
         #endregion

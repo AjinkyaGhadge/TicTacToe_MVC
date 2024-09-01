@@ -1,10 +1,11 @@
 using Controller;
+using Model;
 using System.Diagnostics;
 using System.Windows.Forms;
 
 namespace TicTacToe_2
 {
-    public partial class GameView : Form, IView
+    public partial class GameView : Form, IView, IGridObserver
     {
         View.ThemeManager themeManager = new View.ThemeManager();
         public GameView()
@@ -28,6 +29,11 @@ namespace TicTacToe_2
             ToggleGridButtons(true);
             gameController.HandlePlayButton(Player1NameBox.Text, Player2NameBox.Text);
             PlayButton.Enabled = false;
+        }
+
+        public void SetController(Controller.Controller controller)
+        {
+            gameController = controller;
         }
 
         public void EnablePlayButton(bool state)
@@ -154,6 +160,13 @@ namespace TicTacToe_2
                 control.ForeColor = currentTheme.ForegroundColor;
             }
             this.Text = $"Theme Switcher - {currentTheme.Name} Theme";
+        }
+
+        public void Update(int row, int col, int value)
+        {
+            int buttonNumber = row * 3 + col + 1;
+            string buttonText = value == 1 ? "X" : (value == 0 ? "O" : "");
+            UpdateGridButtonText(buttonNumber.ToString(), buttonText);
         }
     }
 }

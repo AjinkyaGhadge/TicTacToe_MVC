@@ -86,7 +86,7 @@ namespace TicTacToe_2
             button9.Enabled = false;
             button9.Location = new Point(384, 449);
             button9.Margin = new Padding(4, 5, 4, 5);
-            button9.Name = "button9";
+            button9.Name = "9";
             button9.Size = new Size(181, 212);
             button9.TabIndex = 8;
             button9.UseVisualStyleBackColor = true;
@@ -99,7 +99,7 @@ namespace TicTacToe_2
             button8.Enabled = false;
             button8.Location = new Point(194, 449);
             button8.Margin = new Padding(4, 5, 4, 5);
-            button8.Name = "button8";
+            button8.Name = "8";
             button8.Size = new Size(181, 212);
             button8.TabIndex = 7;
             button8.UseVisualStyleBackColor = true;
@@ -112,7 +112,7 @@ namespace TicTacToe_2
             button7.Enabled = false;
             button7.Location = new Point(4, 449);
             button7.Margin = new Padding(4, 5, 4, 5);
-            button7.Name = "button7";
+            button7.Name = "7";
             button7.Size = new Size(181, 212);
             button7.TabIndex = 6;
             button7.UseVisualStyleBackColor = true;
@@ -125,7 +125,7 @@ namespace TicTacToe_2
             button6.Enabled = false;
             button6.Location = new Point(384, 227);
             button6.Margin = new Padding(4, 5, 4, 5);
-            button6.Name = "button6";
+            button6.Name = "6";
             button6.Size = new Size(181, 212);
             button6.TabIndex = 5;
             button6.UseVisualStyleBackColor = true;
@@ -138,7 +138,7 @@ namespace TicTacToe_2
             button5.Enabled = false;
             button5.Location = new Point(194, 227);
             button5.Margin = new Padding(4, 5, 4, 5);
-            button5.Name = "button5";
+            button5.Name = "5";
             button5.Size = new Size(181, 212);
             button5.TabIndex = 4;
             button5.UseVisualStyleBackColor = true;
@@ -151,7 +151,7 @@ namespace TicTacToe_2
             button4.Enabled = false;
             button4.Location = new Point(4, 227);
             button4.Margin = new Padding(4, 5, 4, 5);
-            button4.Name = "button4";
+            button4.Name = "4";
             button4.Size = new Size(181, 212);
             button4.TabIndex = 3;
             button4.UseVisualStyleBackColor = true;
@@ -164,7 +164,7 @@ namespace TicTacToe_2
             button3.Enabled = false;
             button3.Location = new Point(384, 5);
             button3.Margin = new Padding(4, 5, 4, 5);
-            button3.Name = "button3";
+            button3.Name = "3";
             button3.Size = new Size(181, 212);
             button3.TabIndex = 2;
             button3.UseVisualStyleBackColor = true;
@@ -177,7 +177,7 @@ namespace TicTacToe_2
             button2.Enabled = false;
             button2.Location = new Point(194, 5);
             button2.Margin = new Padding(4, 5, 4, 5);
-            button2.Name = "button2";
+            button2.Name = "2";
             button2.Size = new Size(181, 212);
             button2.TabIndex = 1;
             button2.UseVisualStyleBackColor = true;
@@ -190,7 +190,7 @@ namespace TicTacToe_2
             button1.Enabled = false;
             button1.Location = new Point(4, 5);
             button1.Margin = new Padding(4, 5, 4, 5);
-            button1.Name = "button1";
+            button1.Name = "1";
             button1.Size = new Size(181, 212);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = true;

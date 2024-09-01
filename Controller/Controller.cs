@@ -8,11 +8,17 @@ namespace Controller
     {
         private Model.Model gameModel;
         private IView view;
+        private List<IGridObserver> gridObservers;
 
-        public Controller(IView currentView, string player1 = "Player1", string player2 = "Player2")
+        public Controller(IView currentView, List<IGridObserver> gridObservers,string player1 = "Player1", string player2 = "Player2")
         {
             gameModel = new Model.Model(player1, player2);
             view = currentView;
+            this.gridObservers = gridObservers;
+            foreach(var observer in gridObservers)
+            {
+                gameModel.Attach(observer);
+            }
         }
 
         #region Public Methods
@@ -56,12 +62,12 @@ namespace Controller
 
             if (gameModel.currentPlayerID == 1)
             {
-                view.UpdateGridButtonText(button.ToString(), "X");
+                //view.UpdateGridButtonText(button.ToString(), "1");
                 view.SetStatusLabelText($"Current Turn: {gameModel.player2_name}");
             }
             else
             {
-                view.UpdateGridButtonText(button.ToString(), "O");
+                //view.UpdateGridButtonText(button.ToString(), "2");
                 view.SetStatusLabelText($"Current Turn: {gameModel.player1_name}");
             }
 
