@@ -13,6 +13,7 @@ namespace Controller
         private IAIStrategy aiStrategy;
 
 
+
         public Controller(IView currentView, List<IGridObserver> gridObservers, string aiStrategyStr="Easy", string player1 = "Player1", string player2 = "Player2")
         {
             gameModel = new Model.Model(player1, player2);
