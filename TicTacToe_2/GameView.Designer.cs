@@ -51,11 +51,12 @@ namespace TicTacToe_2
             Player1Label = new Label();
             Player1NameBox = new TextBox();
             AIPlayerGroupBox = new GroupBox();
-            Player2RadioButton = new RadioButton();
-            Player1RadioButton = new RadioButton();
+            Player2CheckBox = new CheckBox();
+            Player1CheckBox = new CheckBox();
             menuStrip1 = new MenuStrip();
             Options = new ToolStripMenuItem();
             ChangeThemeMenu = new ToolStripMenuItem();
+            AIDifficultyComboBox = new ToolStripComboBox();
             GameGrid.SuspendLayout();
             ActionButtonGrid.SuspendLayout();
             LowerLayout.SuspendLayout();
@@ -93,7 +94,7 @@ namespace TicTacToe_2
             button9.Enabled = false;
             button9.Location = new Point(384, 449);
             button9.Margin = new Padding(4, 5, 4, 5);
-            button9.Name = "button9";
+            button9.Name = "9";
             button9.Size = new Size(181, 212);
             button9.TabIndex = 8;
             button9.UseVisualStyleBackColor = true;
@@ -106,7 +107,7 @@ namespace TicTacToe_2
             button8.Enabled = false;
             button8.Location = new Point(194, 449);
             button8.Margin = new Padding(4, 5, 4, 5);
-            button8.Name = "button8";
+            button8.Name = "8";
             button8.Size = new Size(181, 212);
             button8.TabIndex = 7;
             button8.UseVisualStyleBackColor = true;
@@ -119,7 +120,7 @@ namespace TicTacToe_2
             button7.Enabled = false;
             button7.Location = new Point(4, 449);
             button7.Margin = new Padding(4, 5, 4, 5);
-            button7.Name = "button7";
+            button7.Name = "7";
             button7.Size = new Size(181, 212);
             button7.TabIndex = 6;
             button7.UseVisualStyleBackColor = true;
@@ -132,7 +133,7 @@ namespace TicTacToe_2
             button6.Enabled = false;
             button6.Location = new Point(384, 227);
             button6.Margin = new Padding(4, 5, 4, 5);
-            button6.Name = "button6";
+            button6.Name = "6";
             button6.Size = new Size(181, 212);
             button6.TabIndex = 5;
             button6.UseVisualStyleBackColor = true;
@@ -145,7 +146,7 @@ namespace TicTacToe_2
             button5.Enabled = false;
             button5.Location = new Point(194, 227);
             button5.Margin = new Padding(4, 5, 4, 5);
-            button5.Name = "button5";
+            button5.Name = "5";
             button5.Size = new Size(181, 212);
             button5.TabIndex = 4;
             button5.UseVisualStyleBackColor = true;
@@ -158,7 +159,7 @@ namespace TicTacToe_2
             button4.Enabled = false;
             button4.Location = new Point(4, 227);
             button4.Margin = new Padding(4, 5, 4, 5);
-            button4.Name = "button4";
+            button4.Name = "4";
             button4.Size = new Size(181, 212);
             button4.TabIndex = 3;
             button4.UseVisualStyleBackColor = true;
@@ -171,7 +172,7 @@ namespace TicTacToe_2
             button3.Enabled = false;
             button3.Location = new Point(384, 5);
             button3.Margin = new Padding(4, 5, 4, 5);
-            button3.Name = "button3";
+            button3.Name = "3";
             button3.Size = new Size(181, 212);
             button3.TabIndex = 2;
             button3.UseVisualStyleBackColor = true;
@@ -184,7 +185,7 @@ namespace TicTacToe_2
             button2.Enabled = false;
             button2.Location = new Point(194, 5);
             button2.Margin = new Padding(4, 5, 4, 5);
-            button2.Name = "button2";
+            button2.Name = "2";
             button2.Size = new Size(181, 212);
             button2.TabIndex = 1;
             button2.UseVisualStyleBackColor = true;
@@ -197,7 +198,7 @@ namespace TicTacToe_2
             button1.Enabled = false;
             button1.Location = new Point(4, 5);
             button1.Margin = new Padding(4, 5, 4, 5);
-            button1.Name = "button1";
+            button1.Name = "1";
             button1.Size = new Size(181, 212);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = true;
@@ -302,8 +303,8 @@ namespace TicTacToe_2
             // 
             // AIPlayerGroupBox
             // 
-            AIPlayerGroupBox.Controls.Add(Player2RadioButton);
-            AIPlayerGroupBox.Controls.Add(Player1RadioButton);
+            AIPlayerGroupBox.Controls.Add(Player2CheckBox);
+            AIPlayerGroupBox.Controls.Add(Player1CheckBox);
             AIPlayerGroupBox.Location = new Point(25, 997);
             AIPlayerGroupBox.Name = "AIPlayerGroupBox";
             AIPlayerGroupBox.Size = new Size(562, 92);
@@ -311,28 +312,27 @@ namespace TicTacToe_2
             AIPlayerGroupBox.TabStop = false;
             AIPlayerGroupBox.Text = "AI_Player";
             // 
-            // Player2RadioButton
+            // Player2CheckBox
             // 
-            Player2RadioButton.AutoSize = true;
-            Player2RadioButton.Location = new Point(364, 41);
-            Player2RadioButton.Name = "Player2RadioButton";
-            Player2RadioButton.Size = new Size(94, 29);
-            Player2RadioButton.TabIndex = 1;
-            Player2RadioButton.TabStop = true;
-            Player2RadioButton.Text = "Player2";
-            Player2RadioButton.UseVisualStyleBackColor = true;
-            Player2RadioButton.Click += Player2RadioButton_Click;
+            Player2CheckBox.AutoSize = true;
+            Player2CheckBox.Location = new Point(376, 43);
+            Player2CheckBox.Name = "Player2CheckBox";
+            Player2CheckBox.Size = new Size(100, 29);
+            Player2CheckBox.TabIndex = 1;
+            Player2CheckBox.Text = "Player 2";
+            Player2CheckBox.UseVisualStyleBackColor = true;
+            Player2CheckBox.CheckedChanged += CheckBox_CheckedChanged;
             // 
-            // Player1RadioButton
+            // Player1CheckBox
             // 
-            Player1RadioButton.AutoSize = true;
-            Player1RadioButton.Location = new Point(83, 41);
-            Player1RadioButton.Name = "Player1RadioButton";
-            Player1RadioButton.Size = new Size(94, 29);
-            Player1RadioButton.TabIndex = 0;
-            Player1RadioButton.TabStop = true;
-            Player1RadioButton.Text = "Player1";
-            Player1RadioButton.UseVisualStyleBackColor = true;
+            Player1CheckBox.AutoSize = true;
+            Player1CheckBox.Location = new Point(56, 43);
+            Player1CheckBox.Name = "Player1CheckBox";
+            Player1CheckBox.Size = new Size(100, 29);
+            Player1CheckBox.TabIndex = 0;
+            Player1CheckBox.Text = "Player 1";
+            Player1CheckBox.UseVisualStyleBackColor = true;
+            Player1CheckBox.CheckedChanged += CheckBox_CheckedChanged;
             // 
             // menuStrip1
             // 
@@ -346,7 +346,7 @@ namespace TicTacToe_2
             // 
             // Options
             // 
-            Options.DropDownItems.AddRange(new ToolStripItem[] { ChangeThemeMenu });
+            Options.DropDownItems.AddRange(new ToolStripItem[] { ChangeThemeMenu, AIDifficultyComboBox });
             Options.Name = "Options";
             Options.Size = new Size(92, 29);
             Options.Text = "Options";
@@ -357,6 +357,14 @@ namespace TicTacToe_2
             ChangeThemeMenu.Size = new Size(232, 34);
             ChangeThemeMenu.Text = "Change Theme";
             ChangeThemeMenu.Click += ChangeThemeMenu_Click;
+            // 
+            // AIDifficultyComboBox
+            // 
+            AIDifficultyComboBox.Name = "AIDifficultyComboBox";
+            AIDifficultyComboBox.Size = new Size(121, 33);
+            AIDifficultyComboBox.Text = "Select AI Difficulty";
+            AIDifficultyComboBox.Items.AddRange(new object[] { "Easy", "Medium", "Hard" });
+            AIDifficultyComboBox.SelectedIndex = 0;
             // 
             // GameView
             // 
@@ -406,10 +414,11 @@ namespace TicTacToe_2
         private TextBox Player1NameBox;
         private Controller.Controller gameController;
         private GroupBox AIPlayerGroupBox;
-        private RadioButton Player2RadioButton;
-        private RadioButton Player1RadioButton;
         private MenuStrip menuStrip1;
         private ToolStripMenuItem Options;
         private ToolStripMenuItem ChangeThemeMenu;
+        private CheckBox Player1CheckBox;
+        private CheckBox Player2CheckBox;
+        private ToolStripComboBox AIDifficultyComboBox;
     }
 }

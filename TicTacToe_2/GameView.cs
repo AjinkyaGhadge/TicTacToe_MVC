@@ -2,6 +2,8 @@ using Controller;
 using Model;
 using System.Diagnostics;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
+using CheckBox = System.Windows.Forms.CheckBox;
 
 namespace TicTacToe_2
 {
@@ -24,13 +26,33 @@ namespace TicTacToe_2
             {
                 Player1NameBox.Enabled = false;
                 Player2NameBox.Enabled = false;
+                AIPlayerGroupBox.Enabled = false;
+                AIDifficultyComboBox.Enabled = false;
             }
             ResetGrid();
             ToggleGridButtons(true);
             gameController.HandlePlayButton(Player1NameBox.Text, Player2NameBox.Text);
+            if (Player1CheckBox.Checked)
+            {
+                gameController.UpdateAIPlay(AIDifficultyComboBox.Text, 0);
+            }
+            else if (Player2CheckBox.Checked)
+            {
+                gameController.UpdateAIPlay(AIDifficultyComboBox.Text, 1);
+            }
+            else
+            {
+                gameController.UpdateAIPlay(AIDifficultyComboBox.Text, -1);
+            }
+            gameController.FirstAIMove();
             PlayButton.Enabled = false;
         }
 
+        public void SetAIMode(bool state)
+        {
+            Player1CheckBox.Enabled = !state;
+            Player2CheckBox.Enabled = !state;
+        }
         public void SetController(Controller.Controller controller)
         {
             gameController = controller;
@@ -41,6 +63,8 @@ namespace TicTacToe_2
             PlayButton.Enabled = state;
             Player1NameBox.Enabled = true;
             Player2NameBox.Enabled = true;
+            AIPlayerGroupBox.Enabled = true;
+            AIDifficultyComboBox.Enabled = true;
         }
 
         private void GridButton_MouseEnter(object sender, EventArgs e)
@@ -169,14 +193,14 @@ namespace TicTacToe_2
             SwitchTheme(sender, e);
         }
 
-        private void Player2RadioButton_Click(object sender, EventArgs e)
+        private void CheckBox_CheckedChanged(object sender, EventArgs e)
         {
-            if (Player2RadioButton.Checked)
+            CheckBox currentCheckBox = (CheckBox)sender;
+            CheckBox otherCheckBox = (currentCheckBox == Player1CheckBox) ? Player2CheckBox : Player1CheckBox;
+
+            if (currentCheckBox.Checked)
             {
-            }
-            else
-            {
-                Player2NameBox.Enabled = false;
+                otherCheckBox.Checked = false;
             }
         }
     }

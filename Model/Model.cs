@@ -5,7 +5,9 @@ namespace Model
     {
         #region Private Members
         public string player1_name { get; set; } = string.Empty;
+        public bool isPlayer1AI { get; set; } = false;
         public string player2_name { get; set; } = string.Empty;
+        public bool isPlayer2AI { get; set; } = false;
         public int player1_id { get; private set; }
         public int player2_id { get; private set; }
         public int currentPlayerID { get; private set; }

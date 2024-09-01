@@ -9,25 +9,35 @@ namespace Controller
         private Model.Model gameModel;
         private IView view;
         private List<IGridObserver> gridObservers;
+        string aiStrategyStr;
+        private IAIStrategy aiStrategy;
 
-        public Controller(IView currentView, List<IGridObserver> gridObservers,string player1 = "Player1", string player2 = "Player2")
+
+        public Controller(IView currentView, List<IGridObserver> gridObservers, string aiStrategyStr="Easy", string player1 = "Player1", string player2 = "Player2")
         {
             gameModel = new Model.Model(player1, player2);
             view = currentView;
+            aiStrategyStr = aiStrategyStr;
             this.gridObservers = gridObservers;
             foreach(var observer in gridObservers)
             {
                 gameModel.Attach(observer);
             }
+            if (aiStrategyStr == "Easy")
+            {
+                this.aiStrategy = new EasyStrategy();
+            }
+            else if (aiStrategyStr == "Medium")
+            {
+                this.aiStrategy = new MediumStrategy();
+            }
+            else if (aiStrategyStr == "Hard")
+            {
+                this.aiStrategy = new HardStrategy();
+            }
         }
 
         #region Public Methods
-
-        public void ResetModel(string player1Name, string player2Name)
-        {
-            gameModel = new Model.Model(player1Name, player2Name);
-        }
-
         public void HandleGridEvent(int button)
         {
             var coordinate = GetCoordinate(button);
@@ -40,6 +50,16 @@ namespace Controller
             {
                 gameModel.SetGridValue(coordinate.Item1, coordinate.Item2, 0);
                 gameModel.SetPlayer(gameModel.player1_id);
+            }
+            if(gameModel.currentPlayerID == gameModel.player2_id && gameModel.isPlayer2AI)
+            {
+                int move = aiStrategy.GetMove(gameModel.grid, gameModel.player1_id);
+                HandleButtonClick(move);
+            }
+            else if (gameModel.currentPlayerID == gameModel.player1_id && gameModel.isPlayer1AI)
+            {
+                int move = aiStrategy.GetMove(gameModel.grid, gameModel.player1_id);
+                HandleButtonClick(move);
             }
         }
 
@@ -62,12 +82,10 @@ namespace Controller
 
             if (gameModel.currentPlayerID == 1)
             {
-                //view.UpdateGridButtonText(button.ToString(), "1");
                 view.SetStatusLabelText($"Current Turn: {gameModel.player2_name}");
             }
             else
             {
-                //view.UpdateGridButtonText(button.ToString(), "2");
                 view.SetStatusLabelText($"Current Turn: {gameModel.player1_name}");
             }
 
@@ -173,6 +191,40 @@ namespace Controller
         {
             var coordinates = GetCoordinate(button);
             return gameModel.GetGridValue(coordinates.Item1, coordinates.Item2);
+        }
+
+        public void UpdateAIPlay(string text, int v)
+        {
+            if (text == "Easy")
+            {
+                this.aiStrategy = new EasyStrategy();
+            }
+            else if (text == "Medium")
+            {
+                this.aiStrategy = new MediumStrategy();
+            }
+            else if (text == "Hard")
+            {
+                this.aiStrategy = new HardStrategy();
+            }
+
+            if(v == 0)
+            {
+                gameModel.isPlayer1AI = true;
+            }
+            else if(v == 1)
+            {
+                gameModel.isPlayer2AI = true;
+            }
+        }
+
+        public void FirstAIMove()
+        {
+            if (gameModel.isPlayer1AI)
+            {
+                int move = aiStrategy.GetMove(gameModel.grid, gameModel.player1_id);
+                HandleGridEvent(move);
+            }
         }
 
         #endregion
