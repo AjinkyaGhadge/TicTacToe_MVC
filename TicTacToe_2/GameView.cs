@@ -17,7 +17,7 @@ namespace TicTacToe_2
         {
             if (string.IsNullOrEmpty(Player1NameBox.Text) || string.IsNullOrEmpty(Player2NameBox.Text))
             {
-                MessageBox.Show("Enter player names before starting");
+                MessageBox.Show("Enter player name(s) before starting");
                 return;
             }
             else
@@ -138,11 +138,6 @@ namespace TicTacToe_2
             button9.Enabled = toggle;
         }
 
-        private void ChangeThemeButton_Click(object sender, EventArgs e)
-        {
-            SwitchTheme(sender, e);
-        }
-
         private void SwitchTheme(object sender, EventArgs e)
         {
             themeManager.SwitchToNextTheme();
@@ -167,6 +162,22 @@ namespace TicTacToe_2
             int buttonNumber = row * 3 + col + 1;
             string buttonText = value == 1 ? "X" : (value == 0 ? "O" : "");
             UpdateGridButtonText(buttonNumber.ToString(), buttonText);
+        }
+
+        private void ChangeThemeMenu_Click(object sender, EventArgs e)
+        {
+            SwitchTheme(sender, e);
+        }
+
+        private void Player2RadioButton_Click(object sender, EventArgs e)
+        {
+            if (Player2RadioButton.Checked)
+            {
+            }
+            else
+            {
+                Player2NameBox.Enabled = false;
+            }
         }
     }
 }

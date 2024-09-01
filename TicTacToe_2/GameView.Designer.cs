@@ -50,10 +50,17 @@ namespace TicTacToe_2
             Player2NameLabel = new Label();
             Player1Label = new Label();
             Player1NameBox = new TextBox();
-            ChangeThemeButton = new Button();
+            AIPlayerGroupBox = new GroupBox();
+            Player2RadioButton = new RadioButton();
+            Player1RadioButton = new RadioButton();
+            menuStrip1 = new MenuStrip();
+            Options = new ToolStripMenuItem();
+            ChangeThemeMenu = new ToolStripMenuItem();
             GameGrid.SuspendLayout();
             ActionButtonGrid.SuspendLayout();
             LowerLayout.SuspendLayout();
+            AIPlayerGroupBox.SuspendLayout();
+            menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
             // GameGrid
@@ -86,7 +93,7 @@ namespace TicTacToe_2
             button9.Enabled = false;
             button9.Location = new Point(384, 449);
             button9.Margin = new Padding(4, 5, 4, 5);
-            button9.Name = "9";
+            button9.Name = "button9";
             button9.Size = new Size(181, 212);
             button9.TabIndex = 8;
             button9.UseVisualStyleBackColor = true;
@@ -99,7 +106,7 @@ namespace TicTacToe_2
             button8.Enabled = false;
             button8.Location = new Point(194, 449);
             button8.Margin = new Padding(4, 5, 4, 5);
-            button8.Name = "8";
+            button8.Name = "button8";
             button8.Size = new Size(181, 212);
             button8.TabIndex = 7;
             button8.UseVisualStyleBackColor = true;
@@ -112,7 +119,7 @@ namespace TicTacToe_2
             button7.Enabled = false;
             button7.Location = new Point(4, 449);
             button7.Margin = new Padding(4, 5, 4, 5);
-            button7.Name = "7";
+            button7.Name = "button7";
             button7.Size = new Size(181, 212);
             button7.TabIndex = 6;
             button7.UseVisualStyleBackColor = true;
@@ -125,7 +132,7 @@ namespace TicTacToe_2
             button6.Enabled = false;
             button6.Location = new Point(384, 227);
             button6.Margin = new Padding(4, 5, 4, 5);
-            button6.Name = "6";
+            button6.Name = "button6";
             button6.Size = new Size(181, 212);
             button6.TabIndex = 5;
             button6.UseVisualStyleBackColor = true;
@@ -138,7 +145,7 @@ namespace TicTacToe_2
             button5.Enabled = false;
             button5.Location = new Point(194, 227);
             button5.Margin = new Padding(4, 5, 4, 5);
-            button5.Name = "5";
+            button5.Name = "button5";
             button5.Size = new Size(181, 212);
             button5.TabIndex = 4;
             button5.UseVisualStyleBackColor = true;
@@ -151,7 +158,7 @@ namespace TicTacToe_2
             button4.Enabled = false;
             button4.Location = new Point(4, 227);
             button4.Margin = new Padding(4, 5, 4, 5);
-            button4.Name = "4";
+            button4.Name = "button4";
             button4.Size = new Size(181, 212);
             button4.TabIndex = 3;
             button4.UseVisualStyleBackColor = true;
@@ -164,7 +171,7 @@ namespace TicTacToe_2
             button3.Enabled = false;
             button3.Location = new Point(384, 5);
             button3.Margin = new Padding(4, 5, 4, 5);
-            button3.Name = "3";
+            button3.Name = "button3";
             button3.Size = new Size(181, 212);
             button3.TabIndex = 2;
             button3.UseVisualStyleBackColor = true;
@@ -177,7 +184,7 @@ namespace TicTacToe_2
             button2.Enabled = false;
             button2.Location = new Point(194, 5);
             button2.Margin = new Padding(4, 5, 4, 5);
-            button2.Name = "2";
+            button2.Name = "button2";
             button2.Size = new Size(181, 212);
             button2.TabIndex = 1;
             button2.UseVisualStyleBackColor = true;
@@ -190,7 +197,7 @@ namespace TicTacToe_2
             button1.Enabled = false;
             button1.Location = new Point(4, 5);
             button1.Margin = new Padding(4, 5, 4, 5);
-            button1.Name = "1";
+            button1.Name = "button1";
             button1.Size = new Size(181, 212);
             button1.TabIndex = 0;
             button1.UseVisualStyleBackColor = true;
@@ -293,33 +300,88 @@ namespace TicTacToe_2
             Player1NameBox.Size = new Size(275, 39);
             Player1NameBox.TabIndex = 2;
             // 
-            // ChangeThemeButton
+            // AIPlayerGroupBox
             // 
-            ChangeThemeButton.Location = new Point(612, 933);
-            ChangeThemeButton.Name = "ChangeThemeButton";
-            ChangeThemeButton.Size = new Size(99, 56);
-            ChangeThemeButton.TabIndex = 3;
-            ChangeThemeButton.Text = "Theme";
-            ChangeThemeButton.UseVisualStyleBackColor = true;
-            ChangeThemeButton.Click += ChangeThemeButton_Click;
+            AIPlayerGroupBox.Controls.Add(Player2RadioButton);
+            AIPlayerGroupBox.Controls.Add(Player1RadioButton);
+            AIPlayerGroupBox.Location = new Point(25, 997);
+            AIPlayerGroupBox.Name = "AIPlayerGroupBox";
+            AIPlayerGroupBox.Size = new Size(562, 92);
+            AIPlayerGroupBox.TabIndex = 4;
+            AIPlayerGroupBox.TabStop = false;
+            AIPlayerGroupBox.Text = "AI_Player";
             // 
-            // View
+            // Player2RadioButton
+            // 
+            Player2RadioButton.AutoSize = true;
+            Player2RadioButton.Location = new Point(364, 41);
+            Player2RadioButton.Name = "Player2RadioButton";
+            Player2RadioButton.Size = new Size(94, 29);
+            Player2RadioButton.TabIndex = 1;
+            Player2RadioButton.TabStop = true;
+            Player2RadioButton.Text = "Player2";
+            Player2RadioButton.UseVisualStyleBackColor = true;
+            Player2RadioButton.Click += Player2RadioButton_Click;
+            // 
+            // Player1RadioButton
+            // 
+            Player1RadioButton.AutoSize = true;
+            Player1RadioButton.Location = new Point(83, 41);
+            Player1RadioButton.Name = "Player1RadioButton";
+            Player1RadioButton.Size = new Size(94, 29);
+            Player1RadioButton.TabIndex = 0;
+            Player1RadioButton.TabStop = true;
+            Player1RadioButton.Text = "Player1";
+            Player1RadioButton.UseVisualStyleBackColor = true;
+            // 
+            // menuStrip1
+            // 
+            menuStrip1.ImageScalingSize = new Size(24, 24);
+            menuStrip1.Items.AddRange(new ToolStripItem[] { Options });
+            menuStrip1.Location = new Point(0, 0);
+            menuStrip1.Name = "menuStrip1";
+            menuStrip1.Size = new Size(615, 33);
+            menuStrip1.TabIndex = 5;
+            menuStrip1.Text = "menuStrip1";
+            // 
+            // Options
+            // 
+            Options.DropDownItems.AddRange(new ToolStripItem[] { ChangeThemeMenu });
+            Options.Name = "Options";
+            Options.Size = new Size(92, 29);
+            Options.Text = "Options";
+            // 
+            // ChangeThemeMenu
+            // 
+            ChangeThemeMenu.Name = "ChangeThemeMenu";
+            ChangeThemeMenu.Size = new Size(232, 34);
+            ChangeThemeMenu.Text = "Change Theme";
+            ChangeThemeMenu.Click += ChangeThemeMenu_Click;
+            // 
+            // GameView
             // 
             AutoScaleDimensions = new SizeF(10F, 25F);
             AutoScaleMode = AutoScaleMode.Font;
-            ClientSize = new Size(737, 1027);
-            Controls.Add(ChangeThemeButton);
+            ClientSize = new Size(615, 1111);
+            Controls.Add(AIPlayerGroupBox);
             Controls.Add(LowerLayout);
             Controls.Add(ActionButtonGrid);
             Controls.Add(GameGrid);
+            Controls.Add(menuStrip1);
+            MainMenuStrip = menuStrip1;
             Margin = new Padding(4, 5, 4, 5);
-            Name = "View";
+            Name = "GameView";
             Text = "TicTacToe";
             GameGrid.ResumeLayout(false);
             ActionButtonGrid.ResumeLayout(false);
             LowerLayout.ResumeLayout(false);
             LowerLayout.PerformLayout();
+            AIPlayerGroupBox.ResumeLayout(false);
+            AIPlayerGroupBox.PerformLayout();
+            menuStrip1.ResumeLayout(false);
+            menuStrip1.PerformLayout();
             ResumeLayout(false);
+            PerformLayout();
         }
 
         #endregion
@@ -343,6 +405,11 @@ namespace TicTacToe_2
         private Label Player1Label;
         private TextBox Player1NameBox;
         private Controller.Controller gameController;
-        private Button ChangeThemeButton;
+        private GroupBox AIPlayerGroupBox;
+        private RadioButton Player2RadioButton;
+        private RadioButton Player1RadioButton;
+        private MenuStrip menuStrip1;
+        private ToolStripMenuItem Options;
+        private ToolStripMenuItem ChangeThemeMenu;
     }
 }
